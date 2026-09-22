@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AirportPerformance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a8525a06-5853-4978-bbb4-c9d85c849264"
+  }
+}

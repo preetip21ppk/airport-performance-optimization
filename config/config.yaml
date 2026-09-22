@@ -1,0 +1,107 @@
+paths:
+  raw_flights:    "data/raw/flights"
+  raw_reference:  "data/raw/reference"
+  raw_weather:    "data/raw/weather"
+  curated:        "data/curated"
+  qa:             "qa"
+
+window:
+  months:
+    - {year: 2025, month: 1}
+    - {year: 2025, month: 2}
+
+kpi:
+  on_time_threshold_minutes: 15
+  target_on_time_pct: 85.00
+
+  delay_basis: arrival
+  exclude_cancelled: true
+  exclude_diverted: true
+
+sources:
+  flights:
+    name: "BTS Reporting Carrier On-Time Performance (1987-present)"
+    url_pattern: "https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_{year}_{month}.zip"
+  airports:
+    name: "OurAirports (public domain)"
+    url: "https://davidmegginson.github.io/ourairports-data/airports.csv"
+  airport_lookup:
+    name: "BTS L_AIRPORT lookup"
+    url: "https://www.transtats.bts.gov/Download_Lookup.asp?Y11x72=Y_NVecbeg"
+  airline_lookup:
+    name: "BTS L_UNIQUE_CARRIERS lookup"
+    url: "https://www.transtats.bts.gov/Download_Lookup.asp?Y11x72=Y_haVdhR_PNeeVRef"
+  airlines_iata:
+    name: "OpenFlights airlines.dat"
+    url: "https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat"
+  aircraft:
+    name: "OpenSky aircraft database"
+    url: "https://opensky-network.org/datasets/metadata/aircraftDatabase.csv"
+  weather:
+    name: "Iowa Environmental Mesonet ASOS/AWOS/METAR"
+    url: "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py"
+
+weather_station_crosswalk:
+  ADQ: PADQ
+  ANC: PANC
+  AZA: IWA
+  BET: PABE
+  BQN: TJBQ
+  BRW: PABR
+  CDV: PACV
+  CLD: CRQ
+  FAI: PAFA
+  FCA: GPI
+  GUF: JKA
+  GUM: PGUM
+  HHH: HXD
+  HNL: PHNL
+  ITO: PHTO
+  JNU: PAJN
+  KOA: PHKO
+  KTN: PAKT
+  LIH: PHLI
+  MQT: SAW
+  OGG: PHOG
+  OME: PAOM
+  OTZ: PAOT
+  PBI: DJT
+  PPG: NSTU
+  PSE: TJPS
+  PSG: PAPG
+  SCC: PASC
+  SCE: UNV
+  SIT: PASI
+  SJU: TJSJ
+  SPN: PGSN
+  STT: TIST
+  STX: TISX
+  USA: JQF
+  WRG: PAWG
+  YAK: PAYA
+  YUM: NYL
+
+timezone_overrides:
+  EAR: America/Chicago
+  XWA: America/Chicago
+  BIH: America/Los_Angeles
+
+passenger_layer:
+  provenance: synthetic
+  seed: 20260917
+  flights_sampled: 2000
+  load_factor: 0.83
+  default_seats: 150
+  repeat_traveller_rate: 0.18
+  baggage_rate_per_passenger: 0.62
+  mishandled_baggage_rate: 0.0057
+
+mysql:
+  host: "localhost"
+  port: 3306
+  database: "airport_performance"
+  user: "root"
+
+mongodb:
+  uri: "mongodb://localhost:27017"
+  database: "airport_performance"

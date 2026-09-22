@@ -1,0 +1,820 @@
+{
+  "compatibilityLevel": 1606,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"_Measures\", \"dim_airport\", \"dim_airport_ranked\", \"dim_airline\", \"dim_aircraft\", \"dim_date\", \"dim_kpi_threshold\", \"fact_flight\", \"fact_delay_reason\", \"MySqlServer\", \"MySqlDatabase\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      }
+    ],
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "MySqlServer",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "description": "MySQL host serving the airport_performance database.",
+        "expression": "\"localhost\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "9d1413b8-06d0-444a-805a-8c922418fd86"
+      },
+      {
+        "name": "MySqlDatabase",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "description": "Database name.",
+        "expression": "\"airport_performance\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "56d11110-edb4-4c3c-9aee-6486b9d83f64"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "r_flight_origin",
+        "fromColumn": "origin_airport_id",
+        "fromTable": "fact_flight",
+        "toColumn": "airport_id",
+        "toTable": "dim_airport"
+      },
+      {
+        "name": "r_flight_dest",
+        "fromColumn": "dest_airport_id",
+        "fromTable": "fact_flight",
+        "isActive": false,
+        "toColumn": "airport_id",
+        "toTable": "dim_airport"
+      },
+      {
+        "name": "r_flight_ranked",
+        "fromColumn": "origin_airport_id",
+        "fromTable": "fact_flight",
+        "toColumn": "airport_id",
+        "toTable": "dim_airport_ranked"
+      },
+      {
+        "name": "r_flight_airline",
+        "fromColumn": "airline_id",
+        "fromTable": "fact_flight",
+        "toColumn": "airline_id",
+        "toTable": "dim_airline"
+      },
+      {
+        "name": "r_flight_aircraft",
+        "fromColumn": "aircraft_id",
+        "fromTable": "fact_flight",
+        "toColumn": "aircraft_id",
+        "toTable": "dim_aircraft"
+      },
+      {
+        "name": "r_flight_date",
+        "fromColumn": "service_date",
+        "fromTable": "fact_flight",
+        "toColumn": "date_key",
+        "toTable": "dim_date"
+      },
+      {
+        "name": "r_aircraft_airline",
+        "fromColumn": "airline_id",
+        "fromTable": "dim_aircraft",
+        "isActive": false,
+        "toColumn": "airline_id",
+        "toTable": "dim_airline"
+      },
+      {
+        "name": "r_reason_date",
+        "fromColumn": "service_date",
+        "fromTable": "fact_delay_reason",
+        "toColumn": "date_key",
+        "toTable": "dim_date"
+      },
+      {
+        "name": "r_reason_airline",
+        "fromColumn": "airline_id",
+        "fromTable": "fact_delay_reason",
+        "toColumn": "airline_id",
+        "toTable": "dim_airline"
+      },
+      {
+        "name": "r_reason_airport",
+        "fromColumn": "origin_airport_id",
+        "fromTable": "fact_delay_reason",
+        "toColumn": "airport_id",
+        "toTable": "dim_airport"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "_Measures",
+        "columns": [
+          {
+            "name": "_",
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "e248765a-6a6d-4363-9d32-868009e0a375",
+            "sourceColumn": "_",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "Holds the measures. Contains no data.",
+        "lineageTag": "e242cfd2-2d37-4f11-b72f-0b42600bba8c",
+        "measures": [
+          {
+            "name": "Scheduled Flights",
+            "description": "Every flight on the timetable, including cancelled and diverted.",
+            "displayFolder": "Flight counts",
+            "expression": "COUNTROWS ( fact_flight )",
+            "formatString": "#,0",
+            "lineageTag": "d9ac7886-1adf-4028-8f90-bad9ef491981"
+          },
+          {
+            "name": "Analytical Flights",
+            "description": "Flights that actually flew and have a recorded arrival delay. This is what the KPI divides by.",
+            "displayFolder": "Flight counts",
+            "expression": "CALCULATE ( COUNTROWS ( fact_flight ), fact_flight[is_analytical] = TRUE )",
+            "formatString": "#,0",
+            "lineageTag": "4b579389-5329-4d4a-a058-c45215a1eb3d"
+          },
+          {
+            "name": "On Time Flights",
+            "description": "Arrived within the threshold. No chart shows it directly, but On Time Pct divides by it.",
+            "displayFolder": "Flight counts",
+            "expression": "CALCULATE ( COUNTROWS ( fact_flight ), fact_flight[is_on_time] = TRUE )",
+            "formatString": "#,0",
+            "lineageTag": "0dcb38f2-a970-464f-90b4-f007765a0564"
+          },
+          {
+            "name": "Target On Time Pct",
+            "description": "The goal, read from the rule table.",
+            "displayFolder": "KPI",
+            "expression": "DIVIDE ( SELECTEDVALUE ( dim_kpi_threshold[target_pct], 85 ), 100 )",
+            "formatString": "0.00%",
+            "lineageTag": "5fa1ae16-a6fb-4bf8-8ef5-f17894df33c1"
+          },
+          {
+            "name": "On Time Pct",
+            "description": "The headline: on-time flights divided by flights we can grade.",
+            "displayFolder": "KPI",
+            "expression": "DIVIDE ( [On Time Flights], [Analytical Flights] )",
+            "formatString": "0.00%",
+            "lineageTag": "1f68b53f-81fb-4618-8246-21aee0bdfd3e"
+          },
+          {
+            "name": "Gap To Target pp",
+            "description": "Percentage points above (+) or below (-) target.",
+            "displayFolder": "KPI",
+            "expression": "( [On Time Pct] - [Target On Time Pct] ) * 100",
+            "formatString": "#,0.00",
+            "lineageTag": "9dc91c09-ae9b-4fe6-837c-43df549ae9a6"
+          },
+          {
+            "name": "Compliance Status",
+            "description": "Pass or fail against the target.",
+            "displayFolder": "KPI",
+            "expression": "IF ( ISBLANK ( [On Time Pct] ), \"No data\", IF ( [On Time Pct] >= [Target On Time Pct], \"Compliant\", \"Non-Compliant\" ) )",
+            "lineageTag": "414d5d90-4fb2-4b2e-9242-a2d0cccf5840"
+          },
+          {
+            "name": "Avg Delay Minutes",
+            "description": "Average minutes late arriving.",
+            "displayFolder": "Delay",
+            "expression": "CALCULATE ( AVERAGE ( fact_flight[delay_minutes] ), fact_flight[is_analytical] = TRUE )",
+            "formatString": "#,0.00",
+            "lineageTag": "ffe43ad2-583f-4cdf-bb49-49a7e5b7bf64"
+          },
+          {
+            "name": "Delay Hours",
+            "description": "Total hours of delay, grouped by the reason the airline reported.",
+            "displayFolder": "Delay",
+            "expression": "DIVIDE ( SUM ( fact_delay_reason[minutes] ), 60 )",
+            "formatString": "#,0",
+            "lineageTag": "d61237a2-d572-4691-905e-0667508abad0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #table({\"_\"}, {{\"\"}})",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_airport",
+        "columns": [
+          {
+            "name": "airport_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "d41f082b-3f13-4d3e-a5ba-83db1730d405",
+            "sourceColumn": "airport_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airport_code",
+            "dataType": "string",
+            "lineageTag": "fd9a5bd3-26ff-4071-a54c-87d7f1eae455",
+            "sourceColumn": "airport_code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airport_name",
+            "dataType": "string",
+            "lineageTag": "b7fa525d-1030-4603-9080-586b646b4aa4",
+            "sourceColumn": "airport_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "lineageTag": "0654c82a-19a7-4198-bb4c-c1f8f6858749",
+            "sourceColumn": "city",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "state",
+            "dataType": "string",
+            "lineageTag": "a152031a-7c4e-4e76-aa8f-19751f34ca75",
+            "sourceColumn": "state",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airport_label",
+            "dataType": "string",
+            "lineageTag": "e62cf0a9-77af-4f3a-b06b-2c07ee74674d",
+            "sourceColumn": "airport_label",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "REAL - one row per airport.",
+        "lineageTag": "ba4cd40f-8c6d-4776-9d1b-16c59e605675",
+        "partitions": [
+          {
+            "name": "dim_airport-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_airport\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_airport_ranked",
+        "columns": [
+          {
+            "name": "airport_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "ed022086-af52-481f-82fa-823368b2a869",
+            "sourceColumn": "airport_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airport_code",
+            "dataType": "string",
+            "lineageTag": "55b2770a-56b0-4e11-858a-059c87557a82",
+            "sourceColumn": "airport_code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "lineageTag": "ed00ce03-2eae-4bbb-af5d-93862f0f2e06",
+            "sourceColumn": "city",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airport_label",
+            "dataType": "string",
+            "lineageTag": "577aa254-9561-43ca-ad19-267d30a7f18c",
+            "sourceColumn": "airport_label",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "flights",
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "7e09a1c0-e1dd-4a5f-a01a-4ce92d69a493",
+            "sourceColumn": "flights",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_delay",
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "b76a83d9-07df-45a4-9b06-0aea7d051c14",
+            "sourceColumn": "avg_delay",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "delay_rank",
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f81ff429-efc8-4e18-a37b-5fc2d6fa80e5",
+            "sourceColumn": "delay_rank",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_worst_ten",
+            "dataType": "int64",
+            "description": "1 for the ten busy airports with the worst average delay. Busy means 3,000+ departures, so a tiny airfield that had one bad day cannot win the chart.",
+            "formatString": "0",
+            "lineageTag": "98ae19d8-e4fe-46cf-abdd-a138474f387d",
+            "sourceColumn": "is_worst_ten",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "REAL - busy airports only, ranked by average delay.",
+        "lineageTag": "e1d32938-6233-4c91-8159-3073c3d7c6eb",
+        "partitions": [
+          {
+            "name": "dim_airport_ranked-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_airport_ranked\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_airline",
+        "columns": [
+          {
+            "name": "airline_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "1c93a666-5cd9-4f3f-8785-b5c1606dafc0",
+            "sourceColumn": "airline_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airline_code",
+            "dataType": "string",
+            "lineageTag": "eb621722-1a7e-4b3f-9333-06df43b448df",
+            "sourceColumn": "airline_code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airline_name",
+            "dataType": "string",
+            "lineageTag": "ff1dbe45-6ae9-4026-a421-31502ee7512e",
+            "sourceColumn": "airline_name",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "REAL - one row per airline.",
+        "lineageTag": "3150947c-4d28-4025-8425-89fe2de9b553",
+        "partitions": [
+          {
+            "name": "dim_airline-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_airline\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_aircraft",
+        "columns": [
+          {
+            "name": "aircraft_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "9073006e-0bc3-4441-a8a8-e76bd885c092",
+            "sourceColumn": "aircraft_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tail_number",
+            "dataType": "string",
+            "lineageTag": "2f3782be-71af-48ac-8e02-5d550c41d2df",
+            "sourceColumn": "tail_number",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "manufacturer",
+            "dataType": "string",
+            "lineageTag": "2cb6ba1a-c03a-4d00-9127-6c4255427f8a",
+            "sourceColumn": "manufacturer",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "model",
+            "dataType": "string",
+            "lineageTag": "599e29b4-c952-4758-abf5-123d060b8094",
+            "sourceColumn": "model",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airline_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "1d6696e7-7bb3-4eb6-8eef-584fe02d04f8",
+            "sourceColumn": "airline_id",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "REAL - one row per aeroplane.",
+        "lineageTag": "61373652-ea35-4a5a-afea-ac917a4aa0b5",
+        "partitions": [
+          {
+            "name": "dim_aircraft-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_aircraft\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_date",
+        "columns": [
+          {
+            "name": "date_key",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd mmm yyyy",
+            "isKey": true,
+            "lineageTag": "4701b500-a75b-4160-9d97-e3653bb1f3fa",
+            "sourceColumn": "date_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "day_name",
+            "dataType": "string",
+            "lineageTag": "68e2810a-bb69-4d1c-992e-b033f3498a19",
+            "sortByColumn": "weekday_number",
+            "sourceColumn": "day_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "weekday_number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "9c3426ee-0f88-479e-abb5-98ad34bcba96",
+            "sourceColumn": "weekday_number",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "lineageTag": "b738f616-8ad6-4f93-bad7-13d61801d2c2",
+            "sourceColumn": "month_name",
+            "summarizeBy": "none"
+          }
+        ],
+        "dataCategory": "Time",
+        "description": "One row per day that has flights.",
+        "lineageTag": "4d4a5a28-6221-4147-bd51-8b909750a23b",
+        "partitions": [
+          {
+            "name": "dim_date-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_date\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_kpi_threshold",
+        "columns": [
+          {
+            "name": "kpi_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "29a1e140-090a-427b-a3d0-c8e29dccef00",
+            "sourceColumn": "kpi_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "metric_name",
+            "dataType": "string",
+            "lineageTag": "6903896c-3899-4748-b18f-973c4d722381",
+            "sourceColumn": "metric_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "threshold_minutes",
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "45eace86-d891-4f63-82f6-07e488bd8922",
+            "sourceColumn": "threshold_minutes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "target_pct",
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "e1600bf8-7a77-4b8c-947f-db3664f6f224",
+            "sourceColumn": "target_pct",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "The business rule. Deliberately not linked to anything - measures read it with SELECTEDVALUE.",
+        "lineageTag": "8cf4277d-4197-409f-a093-fe6e5af764da",
+        "partitions": [
+          {
+            "name": "dim_kpi_threshold-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_dim_kpi_threshold\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_flight",
+        "columns": [
+          {
+            "name": "flight_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "2e28480e-38aa-4194-9610-144468cfce45",
+            "sourceColumn": "flight_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "service_date",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd mmm yyyy",
+            "lineageTag": "d6b3c45e-945d-4f42-ad4e-a967bc1af3fb",
+            "sourceColumn": "service_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airline_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "9a4a1431-9283-487a-881c-666cb4f68725",
+            "sourceColumn": "airline_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "origin_airport_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "f65cf217-65f1-4cab-bc25-68f344025ace",
+            "sourceColumn": "origin_airport_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dest_airport_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "53df606f-abb1-4578-b347-3fa3653748bc",
+            "sourceColumn": "dest_airport_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "aircraft_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "5a008a9e-d9be-45e9-a436-17764d3fe389",
+            "sourceColumn": "aircraft_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "flight_number",
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8f88256a-9847-4032-814b-281888101882",
+            "sourceColumn": "flight_number",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "delay_minutes",
+            "dataType": "int64",
+            "description": "Minutes late ARRIVING. Negative means it landed early.",
+            "formatString": "#,0",
+            "lineageTag": "6fdb7f88-081e-4ded-8a28-0f3d6b1964ee",
+            "sourceColumn": "delay_minutes",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "is_analytical",
+            "dataType": "boolean",
+            "lineageTag": "beeebff9-af04-4ca0-a26f-12703f492c6b",
+            "sourceColumn": "is_analytical",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_on_time",
+            "dataType": "boolean",
+            "description": "Blank for cancelled and diverted flights - neither on time nor late.",
+            "lineageTag": "403c2e52-1410-4eb2-b499-0fc907ef6612",
+            "sourceColumn": "is_on_time",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_cancelled",
+            "dataType": "boolean",
+            "lineageTag": "13998815-9c01-42a2-b5ee-b3fae37b353e",
+            "sourceColumn": "is_cancelled",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_diverted",
+            "dataType": "boolean",
+            "lineageTag": "8c654631-cb09-4d3a-b609-b37464a711b7",
+            "sourceColumn": "is_diverted",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "flight_status",
+            "dataType": "string",
+            "description": "On Time / Delayed / Cancelled / Diverted.",
+            "lineageTag": "276c6692-fcf9-4219-b9fc-46f0b80e4bc3",
+            "sourceColumn": "flight_status",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "REAL - one row per scheduled flight.",
+        "lineageTag": "bc242ead-1c8b-474a-afe6-534eb8d55850",
+        "partitions": [
+          {
+            "name": "fact_flight-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_fact_flight\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_delay_reason",
+        "columns": [
+          {
+            "name": "flight_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "fa23ba68-cfc2-4d15-9d2d-2111bee913a1",
+            "sourceColumn": "flight_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "service_date",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd mmm yyyy",
+            "lineageTag": "60e7dc56-f508-4675-84a8-4beb5b46fe1f",
+            "sourceColumn": "service_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "airline_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "88179d12-1fc3-4723-bdc6-9802485d2650",
+            "sourceColumn": "airline_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "origin_airport_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "924ba47a-f406-484d-bbd4-e836a7fa680d",
+            "sourceColumn": "origin_airport_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reason",
+            "dataType": "string",
+            "description": "Airline operations / Previous flight late / Air traffic control / Weather / Security.",
+            "lineageTag": "e0db5dd8-6632-4a1c-a664-3c8d8c71eb4e",
+            "sourceColumn": "reason",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "minutes",
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "ee7db08b-2986-4a09-8658-731c2a9553cf",
+            "sourceColumn": "minutes",
+            "summarizeBy": "sum"
+          }
+        ],
+        "description": "REAL - the reason the airline reported for each delay.",
+        "lineageTag": "55c1fb82-f698-45a7-ab45-70078a3dc75f",
+        "partitions": [
+          {
+            "name": "fact_delay_reason-partition",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(MySqlServer, MySqlDatabase),",
+                "    Data = Source{[Schema=MySqlDatabase, Item=\"vw_fact_delay_reason\"]}[Data]",
+                "in",
+                "    Data"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 80,
+            "y": 80
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 340,
+            "y": 80
+          },
+          "nodeIndex": "dim_airport",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 600,
+            "y": 80
+          },
+          "nodeIndex": "dim_airport_ranked",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 860,
+            "y": 80
+          },
+          "nodeIndex": "dim_airline",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 80,
+            "y": 290
+          },
+          "nodeIndex": "dim_aircraft",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 340,
+            "y": 290
+          },
+          "nodeIndex": "dim_date",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 600,
+            "y": 290
+          },
+          "nodeIndex": "dim_kpi_threshold",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 860,
+            "y": 290
+          },
+          "nodeIndex": "fact_flight",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 80,
+            "y": 500
+          },
+          "nodeIndex": "fact_delay_reason",
+          "size": {
+            "height": 180,
+            "width": 220
+          },
+          "zIndex": 8
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 80,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesCollapsed": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

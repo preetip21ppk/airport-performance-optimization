@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "AirportPerformance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f34a92b1-aa81-4e13-951e-50f1a7bd5de7"
+  }
+}

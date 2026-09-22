@@ -1,0 +1,200 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU06\",\"type\":2,\"version\":{\"visual\":\"1.8.79\",\"report\":\"2.0.79\",\"page\":\"1.3.79\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useStylableVisualContainerHeader\":true,\"defaultFilterActionIsDataFilter\":true,\"useEnhancedTooltips\":false},\"objects\":{\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU06",
+            "path": "BaseThemes/CY24SU06.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.1}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"42D\"}}}}}]}}",
+      "displayName": "2. Where Delays Come From",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "page_delay",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"05c223a3e660437d9bb4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":12,\"z\":0,\"width\":900,\"height\":44}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Where Delays Come From\",\"textStyle\":{\"fontSize\":\"18pt\",\"fontWeight\":\"bold\",\"color\":\"#0F4C81\",\"fontFamily\":\"Segoe UI\"}},{\"value\":\"   Why flights were late, and where\",\"textStyle\":{\"fontSize\":\"11pt\",\"fontWeight\":\"normal\",\"color\":\"#5A6B7C\",\"fontFamily\":\"Segoe UI\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 44.00,
+          "width": 900.00,
+          "x": 16.00,
+          "y": 12.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"154f07fcafca4daf87bb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1040,\"y\":303.33333333333337,\"z\":2000,\"width\":223.33333333333334,\"height\":408.33333333333337}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_airline.airline_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_airline\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"airline_name\"},\"Name\":\"dim_airline.airline_name\",\"NativeReferenceName\":\"airline_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_airline\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"airline_name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'American Airlines Inc.'\"}}]]}}}]}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.2}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"76D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Airline'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 408.33,
+          "width": 223.33,
+          "x": 1040.00,
+          "y": 303.33,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"80420494b77e4e5b8781\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":66,\"z\":3000,\"width\":500,\"height\":330}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_delay_reason.reason\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.Delay Hours\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_delay_reason\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"reason\"},\"Name\":\"fact_delay_reason.reason\",\"NativeReferenceName\":\"reason\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Delay Hours\"},\"Name\":\"_Measures.Delay Hours\",\"NativeReferenceName\":\"Delay Hours\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.4}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"81D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Why flights were late (total hours of delay)'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 330.00,
+          "width": 500.00,
+          "x": 16.00,
+          "y": 66.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"86ffe8f8d85842849ae6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1040,\"y\":68.33333333333334,\"z\":1000,\"width\":223.33333333333334,\"height\":220}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_date.date_key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"date_key\"},\"Name\":\"dim_date.date_key\",\"NativeReferenceName\":\"date_key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2025-02-08T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2025-02-19T00:00:00'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"date_key\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2025-02-08T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"date_key\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2025-02-20T00:00:00'\"}}}}}}}]}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0.4}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Date'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 220.00,
+          "width": 223.33,
+          "x": 1040.00,
+          "y": 68.33,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"8df27e0f3260477a8031\",\"layouts\":[{\"id\":0,\"position\":{\"x\":530,\"y\":68,\"z\":4000,\"width\":494,\"height\":330}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_airport_ranked.airport_label\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.Avg Delay Minutes\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_airport_ranked\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"airport_label\"},\"Name\":\"dim_airport_ranked.airport_label\",\"NativeReferenceName\":\"airport_label\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Avg Delay Minutes\"},\"Name\":\"_Measures.Avg Delay Minutes\",\"NativeReferenceName\":\"Avg Delay Minutes\"}],\"OrderBy\":[{\"Direction\":0,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Avg Delay Minutes\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#A6342E'\"}}}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":-0.25}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"66D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'The 10 busiest airports with the worst delays (average minutes late)'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"303911dd6f494e07\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_airport_ranked\"}},\"Property\":\"is_worst_ten\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_airport_ranked\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"is_worst_ten\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"1L\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1}]",
+          "height": 330.00,
+          "width": 494.00,
+          "x": 530.00,
+          "y": 68.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"d8dc400aad784317bc39\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":414,\"z\":5000,\"width\":1008,\"height\":298}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_date.day_name\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"day_name\"},\"Name\":\"dim_date.day_name\",\"NativeReferenceName\":\"day_name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"},\"Name\":\"_Measures.On Time Pct\",\"NativeReferenceName\":\"On Time Pct\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#2E8B84'\"}}}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#3A5E39'\"}}}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'On-time performance by day of the week'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 298.00,
+          "width": 1008.00,
+          "x": 16.00,
+          "y": 414.00,
+          "z": 5000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"79D\"}}}}}]}}",
+      "displayName": "1. Performance Overview",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "page_overview",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"10d3e1c4178b4de3beef\",\"layouts\":[{\"id\":0,\"position\":{\"x\":518,\"y\":66,\"z\":4000,\"width\":243,\"height\":92}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Target On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Target On Time Pct\"},\"Name\":\"_Measures.Target On Time Pct\",\"NativeReferenceName\":\"Target On Time Pct\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"26D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Target'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.00,
+          "width": 243.00,
+          "x": 518.00,
+          "y": 66.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"175b0220fde74b5b8906\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16.656254043363337,\"y\":12.113639304264245,\"z\":0,\"width\":804.0428088205393,\"height\":43.91194247795789}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Airport Performance Optimization\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Segoe UI\",\"fontSize\":\"18pt\",\"color\":\"#0f4c81\"}},{\"value\":\"   On-Time Performance against an 85% SLA target\",\"textStyle\":{\"fontFamily\":\"Segoe UI\",\"fontSize\":\"11pt\",\"color\":\"#5a6b7c\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 43.91,
+          "width": 804.04,
+          "x": 16.66,
+          "y": 12.11,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"3bf044fc9b6e41a4880e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":452,\"z\":9000,\"width\":758,\"height\":252}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_airline.airline_name\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_airline\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"airline_name\"},\"Name\":\"dim_airline.airline_name\",\"NativeReferenceName\":\"airline_name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"},\"Name\":\"_Measures.On Time Pct\",\"NativeReferenceName\":\"On Time Pct\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'On-time performance by carrier - no carrier meets the target'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 252.00,
+          "width": 758.00,
+          "x": 16.00,
+          "y": 452.00,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"72b05850654345029117\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1020,\"y\":66,\"z\":6000,\"width\":243,\"height\":92}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Compliance Status\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Compliance Status\"},\"Name\":\"_Measures.Compliance Status\",\"NativeReferenceName\":\"Compliance Status\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"26D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Verdict'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.00,
+          "width": 243.00,
+          "x": 1020.00,
+          "y": 66.00,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"a2d5d1802fdb48acb760\",\"layouts\":[{\"id\":0,\"position\":{\"x\":769,\"y\":66,\"z\":5000,\"width\":243,\"height\":92}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Gap To Target pp\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Gap To Target pp\"},\"Name\":\"_Measures.Gap To Target pp\",\"NativeReferenceName\":\"Gap To Target pp\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"26D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Gap (pp)'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.00,
+          "width": 243.00,
+          "x": 769.00,
+          "y": 66.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"a964354701b240fe866b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":267,\"y\":66,\"z\":3000,\"width\":243,\"height\":92}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"},\"Name\":\"_Measures.On Time Pct\",\"NativeReferenceName\":\"On Time Pct\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"26D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'On-time performance'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.00,
+          "width": 243.00,
+          "x": 267.00,
+          "y": 66.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"c954483eabc14bcfbd7f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":172,\"z\":7000,\"width\":758,\"height\":268}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_date.date_key\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"date_key\"},\"Name\":\"dim_date.date_key\",\"NativeReferenceName\":\"date_key\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"},\"Name\":\"_Measures.On Time Pct\",\"NativeReferenceName\":\"On Time Pct\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"date_key\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Daily on-time performance '\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 268.00,
+          "width": 758.00,
+          "x": 16.00,
+          "y": 172.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"cd892f436e4543998e3d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":790,\"y\":172,\"z\":8000,\"width\":474,\"height\":268}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fact_flight.flight_status\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.Scheduled Flights\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fact_flight\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"flight_status\"},\"Name\":\"fact_flight.flight_status\",\"NativeReferenceName\":\"flight_status\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Scheduled Flights\"},\"Name\":\"_Measures.Scheduled Flights\",\"NativeReferenceName\":\"Scheduled Flights\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Disposition of every scheduled flight'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 268.00,
+          "width": 474.00,
+          "x": 790.00,
+          "y": 172.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"d3e07f2232754a25897a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":790,\"y\":452,\"z\":10000,\"width\":474,\"height\":252}}],\"singleVisual\":{\"visualType\":\"gauge\",\"projections\":{\"Y\":[{\"queryRef\":\"_Measures.On Time Pct\"}],\"TargetValue\":[{\"queryRef\":\"_Measures.Target On Time Pct\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"On Time Pct\"},\"Name\":\"_Measures.On Time Pct\",\"NativeReferenceName\":\"On Time Pct\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Target On Time Pct\"},\"Name\":\"_Measures.Target On Time Pct\",\"NativeReferenceName\":\"Target On Time Pct\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Progress to target'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 252.00,
+          "width": 474.00,
+          "x": 790.00,
+          "y": 452.00,
+          "z": 10000.00
+        },
+        {
+          "config": "{\"name\":\"d41fc689510d47a6ba7a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":66,\"z\":2000,\"width\":243,\"height\":92}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Analytical Flights\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Analytical Flights\"},\"Name\":\"_Measures.Analytical Flights\",\"NativeReferenceName\":\"Analytical Flights\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"26D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#0F4C81'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Flights measured'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1A1A1A'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.00,
+          "width": 243.00,
+          "x": 16.00,
+          "y": 66.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f9d0f1fc9ff44e93a859\",\"layouts\":[{\"id\":0,\"position\":{\"x\":730,\"y\":16,\"z\":1000,\"width\":534,\"height\":40}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 534.00,
+          "x": 730.00,
+          "y": 16.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
