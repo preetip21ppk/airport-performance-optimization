@@ -23,7 +23,7 @@ the warehouse.
 | Gap | −4.11 pp |
 | **Verdict** | **Non-Compliant** |
 
-330 airports · 14 carriers · 5,647 aircraft · 605,585 weather observations.
+330 airports · 14 carriers · 5,705 aircraft · 607,294 weather observations.
 
 Every figure is computed by the pipeline and independently reproduced in pandas,
 SQL and MongoDB before it is reported.
@@ -89,14 +89,14 @@ Nine tables, 51 columns. `Flight` is the fact; everything else describes it.
 | Table | Rows | Source |
 |---|---|---|
 | `Flight` | 1,044,631 | BTS On-Time Performance |
-| `Weather` | 605,585 | Iowa Environmental Mesonet ASOS/METAR |
-| `Aircraft` | 5,647 | FAA Releasable Aircraft Registry |
+| `Weather` | 607,294 | Iowa Environmental Mesonet ASOS/METAR |
+| `Aircraft` | 5,705 | FAA Releasable Aircraft Registry |
 | `Airport` | 330 | BTS `L_AIRPORT` |
 | `Airline` | 14 | BTS `L_UNIQUE_CARRIERS` |
 | `KPIThreshold` | 1 | Business rule, disconnected by design |
-| `Passenger` | 203,806 | **Synthetic** |
-| `BoardingPass` | 248,493 | **Synthetic** |
-| `Baggage` | 154,179 | **Synthetic** |
+| `Passenger` | 204,178 | **Synthetic** |
+| `BoardingPass` | 248,903 | **Synthetic** |
+| `Baggage` | 154,327 | **Synthetic** |
 
 ---
 
@@ -108,7 +108,7 @@ if missed.
 
 | Defect | Resolution |
 |---|---|
-| BTS drops the leading `N` from some tail numbers (`188NV` = `N188NV`) | Normalized to FAA canonical form; aircraft match 83% → 99% |
+| BTS drops the leading `N` from some tail numbers (`188NV` = `N188NV`) | Normalized to FAA canonical form; aircraft match 83% → 97.7% where a tail number is present |
 | FAA registry files are UTF-8 with a BOM | Read with `utf-8-sig` |
 | BTS lookups are latin-1, not UTF-8 | Explicit per-source encoding |
 | Flight times are airport-local; weather is UTC | Converted via each airport's IANA timezone before matching |
@@ -177,7 +177,7 @@ and the documentation.
 - US domestic carriers only.
 - Weather is matched at the origin at scheduled departure, so en-route and
   destination conditions are not modelled.
-- 1.15% of flights carry no aircraft attributes: no tail number in the source, or
+- 0.32% of flights carry no aircraft attributes: no tail number in the source, or
   a registration absent from the FAA file.
 - `Aircraft.airline_id` is derived from operational data. The FAA records the
   legal registrant, which for airline fleets is usually a leasing trust.
