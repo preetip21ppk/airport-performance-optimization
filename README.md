@@ -100,55 +100,6 @@ Nine tables, 51 columns. `Flight` is the fact; everything else describes it.
 
 ---
 
-## Running it
-
-```bash
-pip install -r requirements.txt
-```
-
-MySQL and MongoDB must be running. The password is read from an environment
-variable and is never stored in the repository:
-
-```bash
-export MYSQL_PASSWORD="your_password"
-```
-
-```bash
-cd src
-python 01a_acquire_flights_and_reference.py
-python 01b_acquire_weather.py
-python 02_profile.py
-python 03_clean.py
-python 04_integrate.py
-python 05_normalize.py
-python 05b_synthesize_passenger_layer.py
-python 06_load_mysql.py
-python 07_etl_kpi.py
-python 08_mongo_reconcile.py
-```
-
-Roughly 40 minutes end to end; the MySQL load dominates. The analysis window and
-the business rule live in `config/config.yaml`.
-
-Stage 06 creates the schema, loads the data and builds the reporting views.
-
-### The dashboard
-
-`powerbi/AirportPerformance.pbip` connects to MySQL directly. It needs
-**MySQL Connector/NET 8.0.32** installed — Power BI cannot reach MySQL without it.
-
-The version matters. 8.0.26 and earlier do not recognise the `utf8mb3` charset
-name that MySQL 8.0.30+ reports for its internal metadata, so schema discovery
-fails. 8.0.33 and later no longer bundle their dependency assemblies. 8.0.32 is
-the newest self-contained build that handles `utf8mb3`.
-
-Two parameters control the connection: `MySqlServer` (default `localhost`) and
-`MySqlDatabase` (default `airport_performance`). Change them under
-**Transform data → Manage parameters** to point at another host.
-
----
-
-## Engineering notes
 
 ### Data-quality defects handled
 
