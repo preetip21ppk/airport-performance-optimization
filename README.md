@@ -192,3 +192,5 @@ Python 3.12 (pandas, SQLAlchemy) · MySQL 8.0 · MongoDB 8.0 · Power BI
 - [FAA Releasable Aircraft Registry](https://registry.faa.gov/database/ReleasableAircraft.zip)
 - [Iowa Environmental Mesonet ASOS/METAR](https://mesonet.agron.iastate.edu/request/download.phtml)
 - [OurAirports](https://ourairports.com/data/) · [OpenFlights](https://openflights.org/data.html)
+
+Requires MySQL Connector/NET 8.0.32 for the Power BI file to connect.
